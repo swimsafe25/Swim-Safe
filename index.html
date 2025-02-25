@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Swimming Academy UAE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.9), rgba(0, 180, 219, 0.8));
+        }
+
+        .luxury-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 51, 102, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 51, 102, 0.15);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37, #FFF3A3, #D4AF37);
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        .water-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .water-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.2) 45%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.2) 55%, transparent 60%);
+            background-size: 200% 200%;
+            animation: shine 3s linear infinite;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .testimonial-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .wave-animation {
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .water-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .water-ripple::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: scale(0);
+            animation: ripple 2s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .hover-float {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-float:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            /* Height of header */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            /* Full height minus header */
+            background-color: white;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            display: none;
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding: 10px;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .mobile-menu-link {
+                display: block;
+                padding: 15px 20px;
+                color: #003366;
+                text-decoration: none;
+                border-bottom: 1px solid #eee;
+                font-size: 1.1rem;
+            }
+
+            .mobile-menu-link:hover {
+                background-color: #f8f9fa;
+            }
+
+            .enroll-button-mobile {
+                margin: 20px;
+                width: calc(100% - 40px);
+                padding: 12px;
+                background-color: #003366;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                cursor: pointer;
+            }
+
+            .enroll-button-mobile:hover {
+                background-color: #002244;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#003366',
+                        secondary: '#00B4DB'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white">
+    <header class="fixed top-0 left-0 right-0 h-20 bg-white/95 shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="#" class="font-['Pacifico'] text-3xl text-primary">logo</a>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav flex items-center space-x-8">
+                <a href="#" class="text-primary hover:text-secondary transition-colors">Home</a>
+                <a href="#about" class="text-primary hover:text-secondary transition-colors">About Us</a>
+                <a href="#programs" class="text-primary hover:text-secondary transition-colors">Programs</a>
+                <a href="#testimonials" class="text-primary hover:text-secondary transition-colors">Testimonials</a>
+                <a href="#contact" class="text-primary hover:text-secondary transition-colors">Contact</a>
+            </nav>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <i class="ri-menu-line text-2xl text-primary"></i>
+            </button>
+
+            <!-- Enrollment Button (Desktop) -->
+            <button class="enroll-button-desktop bg-primary text-white px-6 py-2 rounded-button hidden md:block">
+                Enroll Now
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <nav class="flex flex-col">
+                <a href="#" class="mobile-menu-link">Home</a>
+                <a href="#about" class="mobile-menu-link">About Us</a>
+                <a href="#programs" class="mobile-menu-link">Programs</a>
+                <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
+                <a href="#contact" class="mobile-menu-link">Contact</a>
+                <button class="enroll-button-mobile">Enroll Now</button>
+            </nav>
+        </div>
+    </header>
+    <section class="relative h-screen overflow-hidden water-effect"
+        style="background-image: url('https://public.readdy.ai/ai/img_res/5fa1a59d2de8b74400704a49eb66a4eb.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative max-w-7xl mx-auto px-6 h-full flex items-center">
+            <div class="max-w-2xl text-white">
+                <h1 class="playfair text-6xl font-bold mb-6">Master the Art of Swimming with UAE's Top Trainers</h1>
+                <p class="poppins text-xl mb-8">Experience world-class swimming instruction in state-of-the-art
+                    facilities. Join the elite swimming community in Dubai.</p>
+                <button
+                    class="gold-gradient text-white px-8 py-3 !rounded-button hover:shadow-2xl transition-all duration-300 whitespace-nowrap text-lg font-semibold transform hover:scale-105">
+                    Book a Free Trial
+                    <i class="ri-arrow-right-line ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex gap-16 items-center mb-20">
+                <div class="w-1/2">
+                    <h2 class="playfair text-4xl font-bold text-primary mb-6">About Elite Swimming Academy</h2>
+                    <p class="poppins text-gray-600 mb-6">Since 2010, we have been the premier destination for swimming
+                        excellence in the UAE. Our world-class facilities and expert instructors provide an unparalleled
+                        learning environment for swimmers of all levels.</p>
+                    <p class="poppins text-gray-600">We pride ourselves on our personalized approach, maintaining small
+                        class sizes and employing only certified international swimming coaches with extensive
+                        experience in competitive swimming.</p>
+                </div>
+                <div class="w-1/2">
+                    <img src="https://public.readdy.ai/ai/img_res/db28120d7fa9395828fb2f54cda8dd92.jpg"
+                        alt="Swimming Coach" class="w-full rounded-lg shadow-xl">
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-8">
+                <div class="luxury-card p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-medal-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-xl font-bold text-primary mb-3">Olympic Standard</h3>
+                    <p class="poppins text-gray-600">Training programs designed by Olympic-level coaches</p>
+                </div>
+                <div class="luxury-card p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-team-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-xl font-bold text-primary mb-3">Expert Instructors</h3>
+                    <p class="poppins text-gray-600">Internationally certified swimming professionals</p>
+                </div>
+                <div class="luxury-card p-8 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-building-4-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="playfair text-xl font-bold text-primary mb-3">Premium Facilities</h3>
+                    <p class="poppins text-gray-600">State-of-the-art pools and training equipment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="programs" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="playfair text-4xl font-bold text-primary text-center mb-16">Our Swimming Programs</h2>
+            <div class="grid grid-cols-3 gap-8">
+                <div class="luxury-card rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <img src="https://public.readdy.ai/ai/img_res/23285ca5f9eb7cdf7d1ff9a471efcc89.jpg"
+                        alt="Beginners Program" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold text-primary mb-3">Beginners Program</h3>
+                        <p class="poppins text-gray-600 mb-4">Perfect for children and adults taking their first steps
+                            into swimming.</p>
+                        <button
+                            class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap w-full">Learn
+                            More</button>
+                    </div>
+                </div>
+                <div class="luxury-card rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <img src="https://public.readdy.ai/ai/img_res/91981ccaa6b9b0a1e5367094c4b5d9b2.jpg"
+                        alt="Advanced Training" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold text-primary mb-3">Advanced Training</h3>
+                        <p class="poppins text-gray-600 mb-4">Intensive training for competitive swimmers and athletes.
+                        </p>
+                        <button
+                            class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap w-full">Learn
+                            More</button>
+                    </div>
+                </div>
+                <div class="luxury-card rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <img src="https://public.readdy.ai/ai/img_res/d73e52c8ce8feed39ba01fdedd78e686.jpg"
+                        alt="Private Coaching" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="playfair text-xl font-bold text-primary mb-3">Private Coaching</h3>
+                        <p class="poppins text-gray-600 mb-4">Personalized one-on-one training sessions for rapid
+                            improvement.</p>
+                        <button
+                            class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap w-full">Learn
+                            More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="playfair text-4xl font-bold text-primary text-center mb-16">What Our Students Say</h2>
+            <div class="testimonial-scroll overflow-x-auto flex gap-6 pb-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg min-w-[400px]">
+                    <i class="ri-double-quotes-l text-[#D4AF37] text-4xl mb-4"></i>
+                    <p class="poppins text-gray-600 mb-6">"The instructors here are world-class. My daughter's swimming
+                        has improved dramatically in just a few months."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="playfair font-bold text-primary">Sarah Thompson</h4>
+                            <p class="poppins text-sm text-gray-500">Parent</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg min-w-[400px]">
+                    <i class="ri-double-quotes-l text-[#D4AF37] text-4xl mb-4"></i>
+                    <p class="poppins text-gray-600 mb-6">"The facilities are amazing and the coaching is top-notch.
+                        I've achieved my personal best times here."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="playfair font-bold text-primary">Mohammed Al-Rashid</h4>
+                            <p class="poppins text-sm text-gray-500">Competitive Swimmer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg min-w-[400px]">
+                    <i class="ri-double-quotes-l text-[#D4AF37] text-4xl mb-4"></i>
+                    <p class="poppins text-gray-600 mb-6">"As a beginner, I felt very comfortable learning here. The
+                        instructors are patient and professional."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+                            <i class="ri-user-line text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="playfair font-bold text-primary">Emily Chen</h4>
+                            <p class="poppins text-sm text-gray-500">Adult Learner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="playfair text-4xl font-bold text-primary text-center mb-16">Get in Touch</h2>
+                <form class="space-y-6 luxury-card p-8 rounded-xl transition-all duration-300">
+                    <div class="flex flex-col md:flex-row gap-6 mb-6">
+                        <div class="flex-1">
+                            <label class="block poppins text-gray-700 mb-2 font-medium">Inquiry Type</label>
+                            <div class="relative">
+                                <select
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 appearance-none"
+                                    required>
+                                    <option value="">Select Type</option>
+                                    <option value="classes">Swimming Classes</option>
+                                    <option value="job">Job Application</option>
+                                </select>
+                                <i
+                                    class="ri-arrow-down-s-line absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block poppins text-gray-700 mb-2 font-medium">Full Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                required>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-6 mb-6">
+                        <div class="flex-1">
+                            <label class="block poppins text-gray-700 mb-2 font-medium">Email Address</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                required>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block poppins text-gray-700 mb-2 font-medium">Phone Number</label>
+                            <input type="tel"
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                required>
+                        </div>
+                    </div>
+                    <div class="program-select hidden" data-type="classes">
+                        <label class="block poppins text-gray-700 mb-2 font-medium">Program of Interest</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="relative">
+                                <input type="radio" name="program" id="beginners" value="beginners"
+                                    class="absolute opacity-0">
+                                <label for="beginners"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-user-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Beginners Program</h4>
+                                    <p class="text-sm text-gray-500">Perfect for starters</p>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input type="radio" name="program" id="advanced" value="advanced"
+                                    class="absolute opacity-0">
+                                <label for="advanced"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-trophy-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Advanced Training</h4>
+                                    <p class="text-sm text-gray-500">For competitive swimmers</p>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input type="radio" name="program" id="private" value="private"
+                                    class="absolute opacity-0">
+                                <label for="private"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-user-star-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Private Coaching</h4>
+                                    <p class="text-sm text-gray-500">One-on-one training</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-select hidden" data-type="job">
+                        <label class="block poppins text-gray-700 mb-2 font-medium">Position of Interest</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="relative">
+                                <input type="radio" name="position" id="instructor" value="instructor"
+                                    class="absolute opacity-0">
+                                <label for="instructor"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-user-teach-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Swimming Instructor</h4>
+                                    <p class="text-sm text-gray-500">Teach & inspire</p>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input type="radio" name="position" id="lifeguard" value="lifeguard"
+                                    class="absolute opacity-0">
+                                <label for="lifeguard"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-heart-pulse-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Lifeguard</h4>
+                                    <p class="text-sm text-gray-500">Ensure safety</p>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input type="radio" name="position" id="admin" value="admin" class="absolute opacity-0">
+                                <label for="admin"
+                                    class="block p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                    <i class="ri-customer-service-2-line text-2xl text-primary mb-2"></i>
+                                    <h4 class="font-medium">Admin Staff</h4>
+                                    <p class="text-sm text-gray-500">Support operations</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block poppins text-gray-700 mb-2 font-medium">Message</label>
+                        <textarea
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 h-32"
+                            required></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-primary text-white px-8 py-4 !rounded-button hover:bg-opacity-90 transition-all duration-300 whitespace-nowrap w-full hover:shadow-lg transform hover:-translate-y-1">
+                        Submit Inquiry
+                        <i class="ri-arrow-right-line ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-primary text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="font-['Pacifico'] text-3xl text-white mb-6 block">logo</a>
+                    <p class="poppins text-gray-300">The premier destination for swimming excellence in the UAE.</p>
+                </div>
+                <div>
+                    <h4 class="playfair text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="poppins text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="poppins text-gray-300 hover:text-white transition-colors">About
+                                Us</a></li>
+                        <li><a href="#programs"
+                                class="poppins text-gray-300 hover:text-white transition-colors">Programs</a></li>
+                        <li><a href="#contact"
+                                class="poppins text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="playfair text-xl font-bold mb-6">Contact Info</h4>
+                    <ul class="space-y-4">
+                        <li class="poppins text-gray-300 flex items-center">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            Dubai Sports City, UAE
+                        </li>
+                        <li class="poppins text-gray-300 flex items-center">
+                            <i class="ri-phone-line mr-2"></i>
+                            +971 4 123 4567
+                        </li>
+                        <li class="poppins text-gray-300 flex items-center">
+                            <i class="ri-mail-line mr-2"></i>
+                            info@eliteswimming.ae
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="playfair text-xl font-bold mb-6">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="poppins text-gray-300">&copy; 2025 Elite Swimming Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="whatsapp-button" class="fixed bottom-8 right-8 z-50 group">
+        <a href="https://wa.me/971412345678" target="_blank"
+            class="flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all duration-300 hover:-translate-y-1">
+            <i class="ri-whatsapp-line text-white text-3xl"></i>
+        </a>
+        <div
+            class="absolute bottom-full right-0 mb-4 px-4 py-2 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            <p class="text-gray-800 text-sm font-medium">Chat with us on WhatsApp</p>
+            <div class="absolute bottom-0 right-6 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    header.classList.add('shadow-md', 'backdrop-blur-sm');
+                } else {
+                    header.classList.remove('shadow-md', 'backdrop-blur-sm');
+                }
+            });
+            // Scroll reveal animation
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            scrollRevealElements.forEach(element => {
+                scrollObserver.observe(element);
+            });
+            // Form handling
+            const form = document.querySelector('form');
+            const inquiryTypeSelect = form.querySelector('select');
+            const programSelect = form.querySelector('.program-select');
+            const jobSelect = form.querySelector('.job-select');
+            inquiryTypeSelect.addEventListener('change', function () {
+                programSelect.classList.add('hidden');
+                jobSelect.classList.add('hidden');
+                if (this.value === 'classes') {
+                    programSelect.classList.remove('hidden');
+                } else if (this.value === 'job') {
+                    jobSelect.classList.remove('hidden');
+                }
+            });
+            // Radio button styling
+            const radioLabels = document.querySelectorAll('input[type="radio"] + label');
+            radioLabels.forEach(label => {
+                label.addEventListener('click', function () {
+                    radioLabels.forEach(l => l.classList.remove('border-primary', 'bg-primary/5'));
+                    this.classList.add('border-primary', 'bg-primary/5');
+                });
+            });
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Create success message with animation
+                const successMessage = document.createElement('div');
+                successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300';
+                successMessage.innerHTML = `
+<div class="flex items-center">
+<i class="ri-check-line mr-2"></i>
+<span>Thank you for your inquiry. We will contact you soon!</span>
+</div>
+`;
+                document.body.appendChild(successMessage);
+                // Trigger animation
+                setTimeout(() => {
+                    successMessage.classList.remove('translate-x-full');
+                }, 100);
+                setTimeout(() => {
+                    successMessage.classList.add('translate-x-full');
+                    setTimeout(() => successMessage.remove(), 300);
+                }, 3000);
+                form.reset();
+                radioLabels.forEach(l => l.classList.remove('border-primary', 'bg-primary/5'));
+                programSelect.classList.add('hidden');
+                jobSelect.classList.add('hidden');
+            });
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            // // Mobile menu
+            // const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            // const mobileMenu = document.querySelector('.mobile-menu');
+            // if (mobileMenuButton && mobileMenu) {
+            //     mobileMenuButton.addEventListener('click', () => {
+            //         mobileMenu.classList.toggle('active');
+            //     });
+            // }
+        });
+
+        async function submitToGoogleSheets(formData, sheetType) {
+            const SWIMMING_CLASSES_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXnbvCP4kfghOLGI3ZnKYkvzjuVg7bLJmxH2QlwvcWwI0uLP7RIMZb_Q9hF8LwCVBEPQ/exec';
+            const JOB_APPLICATIONS_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyNvNeWArcuZPnQX_P7SqyHISolQNT4tkd_EhuqLw3ah5ezRIUe7cXOcl96S4ud5DC6/exec';
+
+            const url = sheetType === 'classes' ? SWIMMING_CLASSES_SHEET_URL : JOB_APPLICATIONS_SHEET_URL;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                return true;
+            } catch (error) {
+                console.error('Error:', error);
+                return false;
+            }
+        }
+
+        // Form handling
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                inquiryType: form.querySelector('select').value,
+                fullName: form.querySelector('input[type="text"]').value,
+                email: form.querySelector('input[type="email"]').value,
+                phone: form.querySelector('input[type="tel"]').value,
+                message: form.querySelector('textarea').value,
+                program: form.querySelector('input[name="program"]:checked')?.value || '',
+                position: form.querySelector('input[name="position"]:checked')?.value || '',
+                timestamp: new Date().toISOString()
+            };
+
+            const success = await submitToGoogleSheets(
+                formData,
+                formData.inquiryType
+            );
+
+            if (success) {
+                showSuccessMessage();
+                form.reset();
+            }
+        });
+
+        function showSuccessMessage() {
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                background-color: #22c55e;
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 50;
+            `;
+
+            successMessage.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <i class="ri-check-line" style="margin-right: 0.5rem;"></i>
+                    <span>Thank you for your inquiry. We will contact you soon!</span>
+                </div>
+            `;
+
+            document.body.appendChild(successMessage);
+
+            // Show message
+            setTimeout(() => {
+                successMessage.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Hide and remove message
+            setTimeout(() => {
+                successMessage.style.transform = 'translateX(100%)';
+                setTimeout(() => successMessage.remove(), 300);
+            }, 3000);
+        }
+
+        // Mobile menu functionality
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            icon.classList.toggle('ri-menu-line');
+            icon.classList.toggle('ri-close-line');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.add('ri-menu-line');
+                icon.classList.remove('ri-close-line');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.add('ri-menu-line');
+                icon.classList.remove('ri-close-line');
+            }
+        });
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('.mobile-menu-link');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('active');
+                const icon = hamburgerBtn.querySelector('i');
+
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('ri-menu-line');
+                    icon.classList.add('ri-close-line');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                } else {
+                    icon.classList.add('ri-menu-line');
+                    icon.classList.remove('ri-close-line');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            }
+
+            hamburgerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            // Close menu when clicking a link
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu();
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileMenu.classList.contains('active') &&
+                    !mobileMenu.contains(e.target) &&
+                    !hamburgerBtn.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+
+            // Close menu when pressing Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+
+            // Prevent menu from closing when clicking inside it
+            mobileMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+
+</html>
